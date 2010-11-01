@@ -34,6 +34,10 @@ where 'extend_MyClass.rb' reads:
     end
   end
 
+It is also possible to add OSGi bundles to JRuby's ClassPath from java:
+  container.addToClassPath(bundle)
+
+
 == require 'bundle:/bundle.symbolic.name'
 Define ruby libraries contained in an osgi bundle:
   require 'bundle:/org.jruby.osgi.test.samplebundle'
