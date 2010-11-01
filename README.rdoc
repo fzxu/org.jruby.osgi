@@ -24,17 +24,17 @@ In particular: no DynamicImport-Package in this MANIFEST.MF
 OSGiScriptingContainer container = new OSGiScriptingContainer(bundle);
 container.runScriptlet(bundle, "/ruby/extend_MyClass.rb")
 where 'extend_MyClass.rb' reads:
-class Java::OrgJrubyOsgiTestSample::MyClass
-  def say_hello
-    puts "hello"
+  class Java::OrgJrubyOsgiTestSample::MyClass
+    def say_hello
+      puts "hello"
+    end
   end
-end
 
 == In progress (aka untested):
 Define ruby libraries contained in an osgi bundle:
-require 'bundle:/symblic.name.bunde' should work
+  require 'bundle:/symblic.name.bunde' should work
 
 == How-to build:
 maven-3:
-mvn clean integration-test
+  mvn clean integration-test
 
