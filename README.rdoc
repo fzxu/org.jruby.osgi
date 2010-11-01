@@ -4,6 +4,8 @@ Prototype JRuby support in OSGi.
 Extends the jruby.embed APIs: http://kenai.com/projects/jruby-embed/pages/Home
 Access classes, ruby and libraries contained in OSGi bundles.
 
+Example: use EclipseRT Web Starter Kit to run some ruby servlets and access some java objects.
+
 == Generated p2 repository
 A p2-repository is a way to publish artifacts.
 It supports the provisioning of products (p2-director) and compilation environments (maven-tycho).
