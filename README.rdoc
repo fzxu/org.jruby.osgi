@@ -22,8 +22,10 @@ In particular: no DynamicImport-Package in this MANIFEST.MF
 
 == OSGiScriptingContainer extends ScriptingContainer
 Java code in an osgi bundle:
-  OSGiScriptingContainer container = new OSGiScriptingContainer(bundle);
+  OSGiScriptingContainer container = new OSGiScriptingContainer();
   container.runScriptlet(bundle, "/ruby/extend_MyClass.rb")
+
+The bundle is lazily added to JRuby's ClassPath.
 
 where 'extend_MyClass.rb' reads:
   class Java::OrgJrubyOsgiTestSample::MyClass
@@ -32,9 +34,14 @@ where 'extend_MyClass.rb' reads:
     end
   end
 
-== In progress (aka untested):
+== require 'bundle:/bundle.symbolic.name'
 Define ruby libraries contained in an osgi bundle:
-  require 'bundle:/symblic.name.bunde' should work
+  require 'bundle:/org.jruby.osgi.test.samplebundle'
+  class Java::OrgJrubyOsgiTestSamplebundle::MyOtherClass
+    def say_hello_as_well
+      puts "hello_as_well"
+    end
+  end
 
 == How-to build:
 maven-3:

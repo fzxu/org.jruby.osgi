@@ -9,6 +9,7 @@
   <modules>
     
     <module>bundles/org.jruby.osgi</module>
+    <module>bundles/org.jruby.osgi.test.samplebundle</module>
     <module>bundles/org.jruby.osgi.test</module>
     <module>p2/org.jruby.f</module>
     <module>p2/org.jruby.repo</module>

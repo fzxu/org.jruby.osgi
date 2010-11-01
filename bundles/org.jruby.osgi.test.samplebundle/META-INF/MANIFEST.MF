@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: jruby osgi tests sample bundle
+Bundle-Description: bundle used by org.jruby.osgi.test to test using a bundle as a ruby Library.
+Bundle-SymbolicName: org.jruby.osgi.test.samplebundle
+Bundle-Version: 1.5.3.qualifier
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Export-Package: org.jruby.osgi.test.samplebundle

@@ -44,13 +44,17 @@ import org.osgi.framework.FrameworkUtil;
 
 /**
  * Closest thing to JRubyClassLoader's addURL but for OSGi bundles.
- * Used as the parent classloader of 
+ * Used as the parent classloader the usual jruby's bundle's classloader.
  * 
  * @author hmalphettes
  *
  */
 public class JRubyOSGiBundleClassLoader extends ClassLoader implements BundleReference {
 
+    /**
+     * look in OSGi first? true by default for now.
+     * we could look in jruby first if that makes more sense.
+     */
     private boolean _lookInOsgiFirst = true;
     
     private LinkedHashMap<Bundle,ClassLoader> _libraries;
@@ -81,7 +85,10 @@ public class JRubyOSGiBundleClassLoader extends ClassLoader implements BundleRef
     {
         Bundle b = FrameworkUtil.getBundle(classInOsgiBundle);
         if (b == null) {
-            throw new IllegalArgumentException(classInOsgiBundle + " is not loaded by a bundle.");
+            throw new IllegalArgumentException(classInOsgiBundle
+                    + " is not loaded by a bundle. Its classloader is "
+                    + classInOsgiBundle.getClassLoader() + " does not implement "
+                    + "org.osgi.framework.BundleReference");
         }
         _libraries.put(b, classInOsgiBundle.getClassLoader());
     }
@@ -91,9 +98,9 @@ public class JRubyOSGiBundleClassLoader extends ClassLoader implements BundleRef
      * @param contributor The bundle that defines this web-application.
      * @throws IOException
      */
-    public void addBundle(Bundle bundle)
+    public boolean addBundle(Bundle bundle)
     {
-        _libraries.put(bundle, OSGiBundleClassLoaderHelper.getBundleClassLoader(bundle));
+        return _libraries.put(bundle, OSGiBundleClassLoaderHelper.getBundleClassLoader(bundle)) != null;
     }
     
     /**
@@ -102,10 +109,10 @@ public class JRubyOSGiBundleClassLoader extends ClassLoader implements BundleRef
      * @param contributor The bundle that defines this web-application.
      * @throws IOException
      */
-    public void removeBundle(Bundle bundle)
+    public boolean removeBundle(Bundle bundle)
     throws IOException
     {
-        _libraries.remove(bundle);
+        return _libraries.remove(bundle) != null;
     }
     
     /**

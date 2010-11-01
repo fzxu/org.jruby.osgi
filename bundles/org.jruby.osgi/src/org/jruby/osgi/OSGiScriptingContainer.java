@@ -39,6 +39,7 @@ import org.jruby.embed.LocalContextScope;
 import org.jruby.embed.LocalVariableBehavior;
 import org.jruby.embed.ScriptingContainer;
 import org.jruby.osgi.internal.JRubyOSGiBundleClassLoader;
+import org.jruby.osgi.internal.OSGiLoadService;
 import org.jruby.osgi.utils.OSGiFileLocator;
 import org.osgi.framework.Bundle;
 
@@ -86,25 +87,45 @@ public class OSGiScriptingContainer extends ScriptingContainer {
         } else {
             super.setClassLoader(new JRubyOSGiBundleClassLoader());
         }
+        super.setLoadServiceCreator(OSGiLoadService.OSGI_DEFAULT);
         try {
             super.setHomeDirectory(OSGiFileLocator.getJRubyHomeFolder().getAbsolutePath());
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-    
+
     /**
-     * @param bundle The bundle where the script is located.
+     * @param bundleSymbolicName The bundle where the script is located. Lazily added to the
+     * loader of the OSGiScriptingContainer. (require bundle:/... is implicitly done here)
+     * @param path The entry in the bundle
+     * @return
+     */
+    public Object runScriptlet(String bundleSymbolicName, String path) {
+        Bundle bundle = OSGiFileLocator.getBundle(bundleSymbolicName);
+        if (bundle == null) {
+            throw new IllegalArgumentException("Unable to find the bundle '" + bundleSymbolicName + "'");
+        }
+        return runScriptlet(bundle, path);
+    }
+
+    /**
+     * @param bundle The bundle where the script is located. Lazily added to the
+     * loader of the OSGiScriptingContainer. (require bundle:/... is implicitly done here)
      * @param path The entry in the bundle
      * @return
      */
     public Object runScriptlet(Bundle bundle, String path) {
         URL url = bundle.getEntry(path);
+        if (url == null) {
+            throw new IllegalArgumentException("Unable to find the entry '" + path
+                    + "' in the bundle " + bundle.getSymbolicName());
+        }
+        addToClassPath(bundle);
         InputStream istream = null;
         try {
             istream = new BufferedInputStream(url.openStream());
-            return this.runScriptlet(istream, "bundle:/" + bundle.getSymbolicName()
-                    + (path.charAt(0) == '/' ? path : ("/" + path)));
+            return this.runScriptlet(istream, getFilename(bundle, path));
         } catch (IOException ioe) {
             throw new EvalFailedException(ioe);
         } finally {
@@ -128,12 +149,40 @@ public class OSGiScriptingContainer extends ScriptingContainer {
         InputStream istream = null;
         try {
             istream = new BufferedInputStream(url.openStream());
-            return super.parse(istream, "bundle:/" + bundle.getSymbolicName()
-                    + (path.charAt(0) == '/' ? path : ("/" + path)));
+            return super.parse(istream, getFilename(bundle, path));
         } catch (IOException ioe) {
             throw new EvalFailedException(ioe);
         } finally {
             if (istream != null) try { istream.close(); } catch (IOException ioe) {};
         }
     }
+    
+    /**
+     * @param bundle
+     * @param path
+     * @return a nice debugging string for the stack traces that is passed as the 'filename'
+     * of this script to jruby.
+     */
+    private String getFilename(Bundle bundle, String path) {
+        return "bundle:/" + bundle.getSymbolicName()
+            + (path.charAt(0) == '/' ? path : ("/" + path));
+    }
+    
+    /**
+     * @param bundle Add a bundle to the jruby classloader.
+     * Equivalent to require <code>"bundle:/#{bundle.symbolic.name}"</code>
+     */
+    public void addToClassPath(Bundle bundle) {
+        getOSGiBundleClassLoader().addBundle(bundle);
+    }
+    
+    /**
+     * @return The ScriptingContainer's classloader casted to a JRubyOSGiBundleClassLoader.
+     * It is the parent classloader of the actual's runtime's JRubyClassLoader.
+     * It enables finding classes and resources in the OSGi environment.
+     */
+    public JRubyOSGiBundleClassLoader getOSGiBundleClassLoader() {
+        return (JRubyOSGiBundleClassLoader)super.getClassLoader();
+    }
+    
 }

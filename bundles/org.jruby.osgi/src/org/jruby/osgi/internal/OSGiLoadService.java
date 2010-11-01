@@ -75,7 +75,8 @@ public class OSGiLoadService extends LoadService {
      */
     @Override
     protected LoadServiceResource findFileInClasspath(String name) {
-        if (name.startsWith("bundle:/")) {
+        if (name.startsWith("bundle:/") && name.endsWith(".jar")) {
+            name = name.substring(0, name.length()-".jar".length());
             StringTokenizer tokenizer = new StringTokenizer(name, "/", false);
             tokenizer.nextToken();
             String symname = tokenizer.nextToken();
@@ -109,7 +110,8 @@ public class OSGiLoadService extends LoadService {
             return null;
         }
         String file = state.loadName;
-        if (file.startsWith("bundle:/")) {
+        if (file.startsWith("bundle:/") && file.endsWith(".jar")) {
+            file = file.substring(0, file.length()-".jar".length());
             StringTokenizer tokenizer = new StringTokenizer(file, "/", false);
             tokenizer.nextToken();
             String symname = tokenizer.nextToken();

@@ -28,6 +28,7 @@
 package org.jruby.osgi.internal;
 
 import org.jruby.Ruby;
+import org.jruby.util.JRubyClassLoader;
 import org.jruby.runtime.load.Library;
 import org.osgi.framework.Bundle;
 
@@ -47,7 +48,12 @@ public class OSGiBundleLibrary implements Library {
 
     public void load(Ruby runtime, boolean wrap) {
         // Make Java class files in the bundle and resources reachable from Ruby
-        ClassLoader cl = runtime.getJRubyClassLoader().getParent();
+
+        //don't remove this and in-line it: we need this bundle to explicitly
+        //import the package org.jruby.util otherwise we get some weird
+        //classnotfound exception 'org.jruby.util.JRubyClassLoader'
+        JRubyClassLoader jrubycl = (JRubyClassLoader)runtime.getJRubyClassLoader();
+        ClassLoader cl = jrubycl.getParent();
         if (cl instanceof JRubyOSGiBundleClassLoader) {
             ((JRubyOSGiBundleClassLoader)cl).addBundle(this.bundle);
         } else {

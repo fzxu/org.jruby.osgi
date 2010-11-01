@@ -12,6 +12,7 @@ Import-Package: org.jruby,
  org.jruby.platform,
  org.jruby.runtime.builtin,
  org.jruby.runtime.load,
+ org.jruby.util,
  org.osgi.framework
 Export-Package: org.jruby.osgi;version="1.5.3",
  org.jruby.osgi.utils;version="1.5.3"
