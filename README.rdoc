@@ -1,4 +1,4 @@
-=Cloud Framework Repository
+=JRuby OSGi
 
-This repository contains the code of the central Cloud hub, as well as the diagram repository and diagram editor bindings.
-Services may register against this framework to make themselves available to the platform.
+Prototype JRuby support in OSGi.
+Access classes, ruby and libraries contained in OSGi bundles.
