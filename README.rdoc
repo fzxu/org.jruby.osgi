@@ -1,6 +1,7 @@
 =JRuby OSGi
 
 Prototype JRuby support in OSGi.
+Extends the jruby.embed APIs: http://kenai.com/projects/jruby-embed/pages/Home
 Access classes, ruby and libraries contained in OSGi bundles.
 
 == Generated p2 repository
@@ -18,6 +19,16 @@ http://www.intalio.org/public/maven2/org/jruby/jruby/1.5.3/
 The org.jruby.jruby bundle is jruby-complete downloaded from maven central; unchanged.
 
 In particular: no DynamicImport-Package in this MANIFEST.MF
+
+== OSGiScriptingContainer extends ScriptingContainer
+OSGiScriptingContainer container = new OSGiScriptingContainer(bundle);
+container.runScriptlet(bundle, "/ruby/extend_MyClass.rb")
+where 'extend_MyClass.rb' reads:
+class Java::OrgJrubyOsgiTestSample::MyClass
+  def say_hello
+    puts "hello"
+  end
+end
 
 == In progress (aka untested):
 Define ruby libraries contained in an osgi bundle:
