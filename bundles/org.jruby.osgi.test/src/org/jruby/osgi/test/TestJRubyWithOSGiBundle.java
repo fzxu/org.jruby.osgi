@@ -41,6 +41,10 @@ public class TestJRubyWithOSGiBundle {
 		_container.runScriptlet(_bundle, "/ruby/extend_MyClass.rb");
 	}
 	
+	@Test public void testRequireExtendClassDefinedInOSGiBundle() throws Exception {
+		_container.runScriptlet(_bundle, "/ruby/require_extend_MyClass.rb");
+	}
+	
 	@Test public void testExtendClassDefinedInOSGiBundleLibrary() throws Exception {
 		String sampleBundleSymName = "org.jruby.osgi.test.samplebundle";
 		String extendMyOtherClassPath = "/ruby/extend_MyOtherClass.rb";

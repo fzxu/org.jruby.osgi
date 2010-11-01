@@ -36,7 +36,6 @@ import org.jruby.platform.Platform;
 import org.jruby.runtime.load.Library;
 import org.jruby.runtime.load.LoadService;
 import org.jruby.runtime.load.LoadServiceResource;
-import org.jruby.runtime.load.LoadService.SearchState;
 import org.osgi.framework.Bundle;
 
 /**
@@ -67,7 +66,8 @@ public class OSGiLoadService extends LoadService {
     }
 
     /**
-     * Support for 'bundle:/' to look for libraries in osgi bundles.
+     * Support for 'bundle:/' to look for libraries in osgi bundles
+     * or classes or ruby files.
      *
      * @mri rb_find_file
      * @param name the file to find, this is a path name
@@ -75,8 +75,8 @@ public class OSGiLoadService extends LoadService {
      */
     @Override
     protected LoadServiceResource findFileInClasspath(String name) {
-        if (name.startsWith("bundle:/") && name.endsWith(".jar")) {
-            name = name.substring(0, name.length()-".jar".length());
+        if (name.startsWith("bundle:/")) {
+            name = cleanupFindName(name);
             StringTokenizer tokenizer = new StringTokenizer(name, "/", false);
             tokenizer.nextToken();
             String symname = tokenizer.nextToken();
@@ -110,8 +110,8 @@ public class OSGiLoadService extends LoadService {
             return null;
         }
         String file = state.loadName;
-        if (file.startsWith("bundle:/") && file.endsWith(".jar")) {
-            file = file.substring(0, file.length()-".jar".length());
+        if (file.startsWith("bundle:/")) {
+            file = cleanupFindName(file);
             StringTokenizer tokenizer = new StringTokenizer(file, "/", false);
             tokenizer.nextToken();
             String symname = tokenizer.nextToken();
@@ -121,6 +121,21 @@ public class OSGiLoadService extends LoadService {
             }
         }
         return super.createLibrary(state, resource);
+    }
+    
+    /**
+     * Remove the extension when they are misleading.
+     * @param name
+     * @return
+     */
+    private String cleanupFindName(String name) {
+        if (name.endsWith(".jar")) {
+            return name.substring(0, name.length()-".jar".length());
+        } else if (name.endsWith(".class")) {
+            return name.substring(0, name.length()-".class".length());
+        } else {
+            return name;
+        }
     }
 
 }
