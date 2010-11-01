@@ -69,7 +69,7 @@ public class OSGiScriptingContainer extends ScriptingContainer {
      * scope: LocalContextScope.SINGLETHREAD; behavior: LocalVariableBehavior.TRANSIENT
      */
     public OSGiScriptingContainer(Bundle creator) {
-        this(creator, null, null);
+        this(creator, LocalContextScope.SINGLETHREAD, LocalVariableBehavior.TRANSIENT);
     }
     /**
      * @param scope if null, LocalContextScope.SINGLETHREAD
@@ -80,20 +80,14 @@ public class OSGiScriptingContainer extends ScriptingContainer {
      */
     public OSGiScriptingContainer(Bundle creator,
             LocalContextScope scope, LocalVariableBehavior behavior) {
-        if (scope == null) {
-            scope = LocalContextScope.SINGLETHREAD;
-        }
-        if (behavior == null) {
-            behavior = LocalVariableBehavior.TRANSIENT;
-        }
-        ScriptingContainer sc = new ScriptingContainer(scope, behavior);
+        super(scope, behavior);
         if (creator != null) {
-            sc.setClassLoader(new JRubyOSGiBundleClassLoader(creator));
+            super.setClassLoader(new JRubyOSGiBundleClassLoader(creator));
         } else {
-            sc.setClassLoader(new JRubyOSGiBundleClassLoader());
+            super.setClassLoader(new JRubyOSGiBundleClassLoader());
         }
         try {
-            sc.setHomeDirectory(OSGiFileLocator.getJRubyHomeFolder().getAbsolutePath());
+            super.setHomeDirectory(OSGiFileLocator.getJRubyHomeFolder().getAbsolutePath());
         } catch (IOException e) {
             e.printStackTrace();
         }

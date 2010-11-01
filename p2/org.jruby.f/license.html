@@ -1,3 +1,13 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>JRuby License</title>
+</head>
+
+<body lang="EN-US">
+<h2>JRuby License</h2>
 /***** BEGIN LICENSE BLOCK *****
  * Version: CPL 1.0/GPL 2.0/LGPL 2.1
  *
@@ -26,39 +36,6 @@
  * the terms of any one of the CPL, the GPL or the LGPL.
  ***** END LICENSE BLOCK *****/
 
-package org.jruby.osgi.test;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import org.jruby.embed.ScriptingContainer;
-import org.junit.Test;
-
-/**
- * @author hmalphettes
- * 
- * Simple test the bindings.
- * 
- */
-public class TestJRuby {
-
-    private static String puts_x="puts x";
-        
-    @Test public void testPuts_persist() {
-        ScriptingContainer container = new ScriptingContainer();
-        container.put("x", 12345);
-        container.runScriptlet(puts_x);
-    }
-    @Test public void testEachArrayList() {
-        List<Object> list = new ArrayList<Object>();
-        list.add("one");
-        list.add("two");
-        ScriptingContainer container = new ScriptingContainer();
-        container.put("list", list);
-        String each = "list.each do |v|\n"
-            + "  puts v\n"
-            + "end";
-        container.runScriptlet(each);
-    }
-    
-}
+<p><small>Java and all Java-based trademarks are trademarks of Oracle Corporation in the United States, other countries, or both.</small></p>
+</body>
+</html>

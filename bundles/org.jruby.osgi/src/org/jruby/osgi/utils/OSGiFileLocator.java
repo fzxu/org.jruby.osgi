@@ -7,6 +7,7 @@ import java.net.URL;
 import java.net.URLConnection;
 
 import org.osgi.framework.Bundle;
+import org.osgi.framework.BundleContext;
 import org.osgi.framework.FrameworkUtil;
 
 /**

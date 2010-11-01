@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site name="JRuby Repository">
+   <feature url="features/org.jruby.f_1.5.3.qualifier.jar" id="org.jruby.f" version="1.5.3.qualifier">
+   </feature>
+</site>
