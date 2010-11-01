@@ -21,8 +21,10 @@ The org.jruby.jruby bundle is jruby-complete downloaded from maven central; unch
 In particular: no DynamicImport-Package in this MANIFEST.MF
 
 == OSGiScriptingContainer extends ScriptingContainer
-OSGiScriptingContainer container = new OSGiScriptingContainer(bundle);
-container.runScriptlet(bundle, "/ruby/extend_MyClass.rb")
+Java code in an osgi bundle:
+  OSGiScriptingContainer container = new OSGiScriptingContainer(bundle);
+  container.runScriptlet(bundle, "/ruby/extend_MyClass.rb")
+
 where 'extend_MyClass.rb' reads:
   class Java::OrgJrubyOsgiTestSample::MyClass
     def say_hello
