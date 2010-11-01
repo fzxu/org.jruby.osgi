@@ -36,6 +36,7 @@ import org.jruby.platform.Platform;
 import org.jruby.runtime.load.Library;
 import org.jruby.runtime.load.LoadService;
 import org.jruby.runtime.load.LoadServiceResource;
+import org.jruby.runtime.load.LoadService.SearchState;
 import org.osgi.framework.Bundle;
 
 /**
@@ -103,14 +104,22 @@ public class OSGiLoadService extends LoadService {
      * Support for 'bundle:/' to look for libraries in osgi bundles.
      */
     @Override
-    protected Library findLibraryWithClassloaders(SearchState state, String baseName, SuffixType suffixType) {
-        if (baseName.startsWith("bundle:/")) {
-            
+    protected Library createLibrary(SearchState state, LoadServiceResource resource) {
+        if (resource == null) {
+            return null;
         }
-        return super.findLibraryWithClassloaders(state, baseName, suffixType);
+        String file = state.loadName;
+        if (file.startsWith("bundle:/")) {
+            StringTokenizer tokenizer = new StringTokenizer(file, "/", false);
+            tokenizer.nextToken();
+            String symname = tokenizer.nextToken();
+            Bundle bundle = OSGiFileLocator.getBundle(symname);
+            if (bundle != null) {
+                return new OSGiBundleLibrary(bundle);
+            }
+        }
+        return super.createLibrary(state, resource);
     }
-    
-    
 
 }
 class OSGiLoadService19 extends OSGiLoadService {
