@@ -40,3 +40,5 @@ Define ruby libraries contained in an osgi bundle:
 maven-3:
   mvn clean integration-test
 
+== License and copyright:
+The same than the jruby code.
