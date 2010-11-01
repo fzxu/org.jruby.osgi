@@ -47,6 +47,9 @@ Define ruby libraries contained in an osgi bundle:
     end
   end
 
+Access a ruby file inside a bundle:
+  require 'bundle:/org.jruby.osgi.test/ruby/extend_MyClass.rb'
+
 == How-to build:
 maven-3:
   mvn clean integration-test
