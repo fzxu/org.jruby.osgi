@@ -40,7 +40,7 @@ It is also possible to add OSGi bundles to JRuby's ClassPath from java:
 
 == require 'bundle:/bundle.symbolic.name'
 Define ruby libraries contained in an osgi bundle:
-  require 'bundle:/org.jruby.osgi.test.samplebundle'
+  require 'osgibundle:/org.jruby.osgi.test.samplebundle'
   class Java::OrgJrubyOsgiTestSamplebundle::MyOtherClass
     def say_hello_as_well
       puts "hello_as_well"
@@ -48,7 +48,7 @@ Define ruby libraries contained in an osgi bundle:
   end
 
 Access a ruby file inside a bundle:
-  require 'bundle:/org.jruby.osgi.test/ruby/extend_MyClass.rb'
+  require 'osgibundle:/org.jruby.osgi.test/ruby/extend_MyClass.rb'
 
 == How-to build:
 maven-3:

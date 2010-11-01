@@ -46,6 +46,8 @@ import org.osgi.framework.Bundle;
  */
 public class OSGiLoadService extends LoadService {
     
+    public static final String OSGI_BUNDLE_CLASSPATH_SCHEME = "osgibundle:/";
+    
     public static LoadServiceCreator OSGI_DEFAULT = new LoadServiceCreator() {
         public LoadService create(Ruby runtime) {
             if (runtime.is1_9()) {
@@ -75,7 +77,7 @@ public class OSGiLoadService extends LoadService {
      */
     @Override
     protected LoadServiceResource findFileInClasspath(String name) {
-        if (name.startsWith("bundle:/")) {
+        if (name.startsWith(OSGI_BUNDLE_CLASSPATH_SCHEME)) {
             name = cleanupFindName(name);
             StringTokenizer tokenizer = new StringTokenizer(name, "/", false);
             tokenizer.nextToken();
@@ -110,7 +112,7 @@ public class OSGiLoadService extends LoadService {
             return null;
         }
         String file = state.loadName;
-        if (file.startsWith("bundle:/")) {
+        if (file.startsWith(OSGI_BUNDLE_CLASSPATH_SCHEME)) {
             file = cleanupFindName(file);
             StringTokenizer tokenizer = new StringTokenizer(file, "/", false);
             tokenizer.nextToken();

@@ -90,7 +90,7 @@ public class TestJRubyWithOSGiBundle {
         try {
             istream = new BufferedInputStream(url.openStream());
             return container.runScriptlet(istream,
-            		"not-the-expected-bundle:/"+ bundle.getSymbolicName() + path);
+            		"not-the-expected-osgibundle:/"+ bundle.getSymbolicName() + path);
         } catch (IOException ioe) {
             throw new EvalFailedException(ioe);
         } finally {
