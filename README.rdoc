@@ -19,8 +19,15 @@ http://www.intalio.org/public/p2repo/org/jruby/
 The jruby sources bundle was assembled manually. It is currently uploaded here:
 http://www.intalio.org/public/maven2/org/jruby/jruby/1.5.3/
 The org.jruby.jruby bundle is jruby-complete downloaded from maven central; unchanged.
+[Errata] the version 1.5.3.v20101104-nobsfimports is a repackaged jruby-complete without the bsf imports
+until we figure out the PDE issue.
 
 In particular: no DynamicImport-Package in this MANIFEST.MF
+
+Due to a bug in Eclipse PDE the jruby-complete was repackaged:
+https://bugs.eclipse.org/bugs/show_bug.cgi?id=329390
+The only change is the presence of a qualifier in the version number:
+1.5.3 -> 1.5.3.20101104
 
 == OSGiScriptingContainer extends ScriptingContainer
 Java code in an osgi bundle:

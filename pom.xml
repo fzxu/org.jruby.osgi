@@ -16,12 +16,12 @@
   </modules>
 
   <properties>
-    <forceContextQualifier>v20101101</forceContextQualifier>
+    <forceContextQualifier>v20101104-nobsfimports</forceContextQualifier>
       
     <!--pathToPack200ParentFolder>/usr/lib/jvm/java-5-sun/bin</pathToPack200ParentFolder-->
     <tycho-version>0.10.0</tycho-version> 
     
-    <jruby-version>1.5.3</jruby-version>
+    <jruby-version>1.5.3.nobsf</jruby-version>
     
     <eclipse-mirror-url>http://www.intalio.org/public/p2repo/org/eclipse</eclipse-mirror-url>
     <!--eclipse-mirror-url>http://download.eclipse.org</eclipse-mirror-url-->
