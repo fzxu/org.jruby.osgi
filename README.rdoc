@@ -29,7 +29,7 @@ https://bugs.eclipse.org/bugs/show_bug.cgi?id=329390
 The only change is the presence of a qualifier in the version number:
 1.5.3 -> 1.5.3.20101104
 
-== OSGiScriptingContainer extends ScriptingContainer
+== org.jruby.embed.osgi.OSGiScriptingContainer extends ScriptingContainer
 Java code in an osgi bundle:
   OSGiScriptingContainer container = new OSGiScriptingContainer();
   container.runScriptlet(bundle, "/ruby/extend_MyClass.rb")
