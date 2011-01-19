@@ -17,8 +17,8 @@
       %license
     </license>
        
-    <plugin id="org.jruby.osgi" download-size="0" install-size="0" version="0.0.0" unpack="false"/>
-    <plugin id="org.jruby.osgi.source" download-size="0" install-size="0" version="0.0.0" unpack="false"/>
+    <plugin id="org.jruby.embed.osgi" download-size="0" install-size="0" version="0.0.0" unpack="false"/>
+    <plugin id="org.jruby.embed.osgi.source" download-size="0" install-size="0" version="0.0.0" unpack="false"/>
     <plugin id="org.jruby.jruby" download-size="0" install-size="0" version="0.0.0" unpack="true"/>
     <plugin id="org.jruby.jruby.source" download-size="0" install-size="0" version="0.0.0" unpack="false"/>
 

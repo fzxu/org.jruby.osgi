@@ -2,15 +2,15 @@
 <project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>org.jruby.osgi</groupId>
+  <groupId>org.jruby.embed.osgi</groupId>
   <artifactId>jruby-osgi</artifactId>
   <version>1.5.3-SNAPSHOT</version>
   <packaging>pom</packaging>
   <modules>
     
-    <module>bundles/org.jruby.osgi</module>
-    <module>bundles/org.jruby.osgi.test.samplebundle</module>
-    <module>bundles/org.jruby.osgi.test</module>
+    <module>bundles/org.jruby.embed.osgi</module>
+    <module>bundles/org.jruby.embed.osgi.test.samplebundle</module>
+    <module>bundles/org.jruby.embed.osgi.test</module>
     <module>p2/org.jruby.f</module>
     <module>p2/org.jruby.repo</module>
   </modules>

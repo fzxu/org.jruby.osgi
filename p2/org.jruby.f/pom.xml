@@ -2,7 +2,7 @@
 <project>
   <modelVersion>4.0.0</modelVersion>
   <parent>
-    <groupId>org.jruby.osgi</groupId>
+    <groupId>org.jruby.embed.osgi</groupId>
     <artifactId>jruby-osgi</artifactId>
     <version>1.5.3-SNAPSHOT</version>
     <relativePath>../../pom.xml</relativePath>
