@@ -4,7 +4,7 @@
   <parent>
     <groupId>org.jruby.embed.osgi</groupId>
     <artifactId>jruby-osgi</artifactId>
-    <version>1.5.3-SNAPSHOT</version>
+    <version>1.6.2-SNAPSHOT</version>
     <relativePath>../../pom.xml</relativePath>
   </parent>
   <artifactId>org.jruby.repo</artifactId>

@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: jruby osgi tests
+Bundle-SymbolicName: org.jruby.embed.osgi.test
+Bundle-Version: 1.6.2.qualifier
+Import-Package: org.jruby.embed,
+ org.jruby.embed.osgi,
+ org.jruby.embed.osgi.utils,
+ org.junit;version="4.7.0",
+ org.osgi.framework;version="1.3.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Export-Package: org.jruby.embed.osgi.test.sample

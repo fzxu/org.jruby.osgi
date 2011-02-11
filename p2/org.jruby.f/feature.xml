@@ -2,7 +2,7 @@
 <feature
       id="org.jruby.f"
       label="%featureName"
-      version="1.5.3.qualifier"
+      version="1.6.2.qualifier"
       provider-name="%providerName">
 
     <description url="%descriptionURL">
@@ -17,8 +17,8 @@
       %license
     </license>
        
-    <plugin id="org.jruby.embed.osgi" download-size="0" install-size="0" version="0.0.0" unpack="false"/>
-    <plugin id="org.jruby.embed.osgi.source" download-size="0" install-size="0" version="0.0.0" unpack="false"/>
+    <!--plugin id="org.jruby.embed.osgi" download-size="0" install-size="0" version="0.0.0" unpack="false"/>
+    <plugin id="org.jruby.embed.osgi.source" download-size="0" install-size="0" version="0.0.0" unpack="false"/-->
     <plugin id="org.jruby.jruby" download-size="0" install-size="0" version="0.0.0" unpack="true"/>
     <plugin id="org.jruby.jruby.source" download-size="0" install-size="0" version="0.0.0" unpack="false"/>
 

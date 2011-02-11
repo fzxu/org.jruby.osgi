@@ -1,0 +1,1 @@
+require 'osgibundle:/org.jruby.embed.osgi.test/ruby/extend_MyClass.rb'

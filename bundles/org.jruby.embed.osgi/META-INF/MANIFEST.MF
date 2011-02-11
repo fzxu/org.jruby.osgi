@@ -1,0 +1,23 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: jruby osgi integration
+Bundle-SymbolicName: org.jruby.embed.osgi
+Bundle-Version: 1.6.2.qualifier
+Bundle-Vendor: Intalio, Inc
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Import-Package: org.jruby,
+ org.jruby.embed,
+ org.jruby.embed.jsr223,
+ org.jruby.embed.osgi.internal;version="1.6.0.RC2",
+ org.jruby.embed.osgi.utils;version="1.6.0.RC2",
+ org.jruby.embed.util;version="1.6.0.RC2",
+ org.jruby.exceptions,
+ org.jruby.javasupport,
+ org.jruby.platform,
+ org.jruby.runtime,
+ org.jruby.runtime.builtin,
+ org.jruby.runtime.load,
+ org.jruby.util,
+ org.osgi.framework
+Bundle-ActivationPolicy: lazy
+Eclipse-PatchFragment: true
