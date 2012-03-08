@@ -4,14 +4,14 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.jruby.embed.osgi</groupId>
   <artifactId>jruby-osgi</artifactId>
-  <version>1.6.2-SNAPSHOT</version>
+  <version>1.6.7-SNAPSHOT</version>
   <packaging>pom</packaging>
   <modules>
     
     <!--module>bundles/org.jruby.embed.osgi</module-->
-    <module>bundles/org.jruby.embed.osgi.test.samplebundle</module>
+    <!-- <module>bundles/org.jruby.embed.osgi.test.samplebundle</module>
     <module>bundles/org.jruby.embed.osgi.test</module>
-    <module>bundles/org.jruby.embed.osgi.jsr223.test</module>
+    <module>bundles/org.jruby.embed.osgi.jsr223.test</module> -->
     <module>p2/org.jruby.f</module>
     <module>p2/org.jruby.repo</module>
   </modules>
@@ -23,7 +23,7 @@
     <tycho-version>0.10.0</tycho-version> 
     
     <!--jruby-version>1.6.2.nobsf</jruby-version-->
-    <jruby-version>1.6.0.RC2</jruby-version>
+    <jruby-version>1.6.7</jruby-version>
     <eclipse-mirror-url>http://www.intalio.org/public/p2repo/org/eclipse</eclipse-mirror-url>
     <!--eclipse-mirror-url>http://download.eclipse.org</eclipse-mirror-url-->
     <equinox-site>${eclipse-mirror-url}/eclipse/updates/3.6</equinox-site>
@@ -48,7 +48,7 @@
   <repositories>
    <repository>
      <id>intalio-org-jruby-sources</id>
-     <url>http://intalio.org/public/maven2</url>
+     <url>http://release.intalio.com/m2repo</url>
    </repository>
    <repository>
      <id>equinox</id>
