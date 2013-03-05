@@ -4,7 +4,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.jruby.embed.osgi</groupId>
   <artifactId>jruby-osgi</artifactId>
-  <version>1.6.7-SNAPSHOT</version>
+  <version>1.7.3-SNAPSHOT</version>
   <packaging>pom</packaging>
   <modules>
     
@@ -23,7 +23,7 @@
     <tycho-version>0.10.0</tycho-version> 
     
     <!--jruby-version>1.6.2.nobsf</jruby-version-->
-    <jruby-version>1.6.7</jruby-version>
+    <jruby-version>1.7.3</jruby-version>
     <eclipse-mirror-url>http://www.intalio.org/public/p2repo/org/eclipse</eclipse-mirror-url>
     <!--eclipse-mirror-url>http://download.eclipse.org</eclipse-mirror-url-->
     <equinox-site>${eclipse-mirror-url}/eclipse/updates/3.6</equinox-site>
